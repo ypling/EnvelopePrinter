@@ -22,8 +22,6 @@ export default React.createClass({
     ActionCreator.taskState(this.props.task);
   },
   handlePrintTask(){
-    //window.onbeforeprint = ActionCreator.printTask(this.props.task);
-    //window.print();
     ActionCreator.printTask(this.props.task);
   },
 
