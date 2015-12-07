@@ -5,6 +5,7 @@ import Constants from '../Constants';
 
 export default {
   addItem(text) {
+
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.TASK_ADDED,
       text: text
@@ -12,10 +13,32 @@ export default {
   },
 
   clearList() {
-    console.warn('clearList action not yet implemented...');
+
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.CLEAR_LIST
+    });
   },
 
   completeTask(task) {
-    console.warn('completeTask action not yet implemented...', task);
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.TASK_COMPLETED,
+      task: task
+    });
+  },
+
+  editTask(task, text){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.TASK_EDITED,
+      task: task,
+      newTitle: text
+    });
+  },
+
+  taskState(task){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.TASK_STATE,
+      task:task
+    })
   }
+
 };

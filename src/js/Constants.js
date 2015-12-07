@@ -4,7 +4,11 @@ export default {
 
   // Each time you add an action, add it here... They should be past-tense
   ActionTypes: {
-    TASK_ADDED:"TASK_ADDED"
+    TASK_ADDED:"TASK_ADDED",
+    CLEAR_LIST:"CLEAR_LIST",
+    TASK_EDITED:"TASK_EDITED",
+    TASK_COMPLETED:"TASK_COMPLETED",
+    TASK_STATE:"TASK_STATE"
   },
 
   ActionSources: {
