@@ -39,6 +39,12 @@ export default {
       type: Constants.ActionTypes.TASK_STATE,
       task:task
     })
+  },
+  printTask(task){
+    Dispatcher.handleViewAction({
+      type:Constants.ActionTypes.TASK_PRINT,
+      task:task
+    });
   }
 
 };

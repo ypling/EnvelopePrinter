@@ -17,6 +17,7 @@
     "gulp-util": "^3.0.7",
     "object-assign": "^4.0.1",
     "react": "^0.14.3",
+    "react-dom": "^0.14.3",
     "reactify": "^1.1.1",
     "require-dir": "^0.3.0",
     "vinyl-buffer": "^1.0.0",

@@ -21,6 +21,11 @@ export default React.createClass({
   handleEditState(e){
     ActionCreator.taskState(this.props.task);
   },
+  handlePrintTask(){
+    //window.onbeforeprint = ActionCreator.printTask(this.props.task);
+    //window.print();
+    ActionCreator.printTask(this.props.task);
+  },
 
   render() {
     let {task} = this.props;
@@ -36,9 +41,9 @@ export default React.createClass({
       return (
         <li className="task" onDoubleClick={this.handleEditState}>
           <input type="checkbox" ref="checkbox" checked={task.completed} onClick={this.handleToggle}/>
-          <label>{task.title} {task.editing}</label>
+          <label>{task.title}</label>
           <button onClick={this.handleEditState}>Edit</button>
-          <button onClick={window.print}>Print</button>
+          <button onClick={this.handlePrintTask}>Print</button>
         </li>
       );
     }

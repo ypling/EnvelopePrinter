@@ -1,6 +1,7 @@
 export default {
   // event name triggered from store, listened to by views
   CHANGE_EVENT: 'change',
+  PRINT_EVENT:'print',
 
   // Each time you add an action, add it here... They should be past-tense
   ActionTypes: {
@@ -8,7 +9,8 @@ export default {
     CLEAR_LIST:"CLEAR_LIST",
     TASK_EDITED:"TASK_EDITED",
     TASK_COMPLETED:"TASK_COMPLETED",
-    TASK_STATE:"TASK_STATE"
+    TASK_STATE:"TASK_STATE",
+    TASK_PRINT:"TASK_PRINT"
   },
 
   ActionSources: {

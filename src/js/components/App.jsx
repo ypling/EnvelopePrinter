@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import TaskList from './TaskList.jsx';
+import ToAddress from './ToAddress.jsx';
 
 export default React.createClass({
   propTypes: {
@@ -15,13 +16,17 @@ export default React.createClass({
   },
 
   render() {
-    let {onAddTask, onClear, tasks} = this.props;
+    let {onAddTask, onClear, tasks,targetIndex} = this.props;
+    let target=targetIndex===-1?"null":tasks[targetIndex].title;
     return (
       <div>
-        <h1>Learn Flux</h1>
-        <TaskList tasks={tasks} />
-        <button onClick={onAddTask}>Add New</button>
-        <button onClick={onClear}>Clear List</button>
+        <div className="addressList">
+          <h1>Learn Flux</h1>
+          <TaskList tasks={tasks}/>
+          <button onClick={onAddTask}>Add New</button>
+          <button onClick={onClear}>Clear List</button>
+        </div>
+        <ToAddress title={target}/>
       </div>
     );
   }

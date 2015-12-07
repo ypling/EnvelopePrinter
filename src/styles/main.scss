@@ -11,5 +11,33 @@ li.task {
 
   label {
     padding: 0 10px;
+    width: 300px;
+  }
+}
+
+.toAddress {
+  margin-left: 30%;
+  margin-top: 30px;
+  font-size: 24px;
+  display: none;
+}
+
+.fromAddress {
+  margin-top: -15px;
+  display: none;
+}
+
+@media print {
+  .fromAddress {
+    margin-top: -15px;
+    display: block;
+  }
+
+  .toAddress {
+    display: block;
+  }
+
+  .addressList {
+    display: none;
   }
 }
