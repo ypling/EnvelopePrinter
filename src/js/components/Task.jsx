@@ -2,29 +2,48 @@ import React from 'react';
 import ActionCreator from '../actions/TodoActionCreators';
 
 export default React.createClass({
-  getDefaultProps() {
-    return {
-      task: {
-        title: '',
-        completed: false
-      }
-    };
-  },
+  //getDefaultProps() {
+  //  return {
+  //    task: {
+  //      title: '',
+  //      completed: false,
+  //      createTime:'12313'
+  //    }
+  //  };
+  //},
 
-  handleToggle(task) {
-    if (this.refs.checkbox.getDOMNode().checked) {
-      ActionCreator.completeTask(task);
-    }
+  handleToggle(e) {
+    ActionCreator.completeTask(this.props.task);
+  },
+  handleEditTask(e){
+    ActionCreator.editTask(this.props.task, this.refs.input.value)
+  },
+  handleEditState(e){
+    ActionCreator.taskState(this.props.task);
+  },
+  handlePrintTask(){
+    ActionCreator.printTask(this.props.task);
   },
 
   render() {
     let {task} = this.props;
-    return (
-      <li className="task">
-        <input type="checkbox" ref="checkbox" checked={task.completed}
-          onChange={this.handleToggle.bind(this, task)} />
-        <label>{task.title}</label>
-      </li>
-    );
+    if (task.editing) {
+      return (
+        <li className="task">
+          <input type="text" ref="input" value={task.title} onChange={this.handleEditTask}
+                 onSubmit={this.handleEditState}/>
+          <button onClick={this.handleEditState}>Save</button>
+        </li>
+      );
+    } else {
+      return (
+        <li className="task" onDoubleClick={this.handleEditState}>
+          <input type="checkbox" ref="checkbox" checked={task.completed} onClick={this.handleToggle}/>
+          <label>{task.title}</label>
+          <button onClick={this.handleEditState}>Edit</button>
+          <button onClick={this.handlePrintTask}>Print</button>
+        </li>
+      );
+    }
   }
 });
