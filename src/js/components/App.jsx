@@ -21,7 +21,7 @@ export default React.createClass({
     return (
       <div>
         <div className="addressList">
-          <h1>Learn Flux</h1>
+          <h1>Envelop Printer</h1>
           <TaskList tasks={tasks}/>
           <button onClick={onAddTask}>Add New</button>
           <button onClick={onClear}>Clear List</button>

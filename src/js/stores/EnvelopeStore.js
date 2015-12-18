@@ -1,7 +1,7 @@
+import assign from 'object-assign';
+import {EventEmitter} from 'events';
 import Dispatcher from '../Dispatcher';
 import Constants from '../Constants';
-import BaseStore from './BaseStore';
-import assign from 'object-assign';
 
 // data storage
 let _data = [];
@@ -14,28 +14,30 @@ function _addItem(title, completed = false, createTime = (new Date()).toString()
 }
 function _clearList() {
   _data = [];
-  TodoStore.emitChange();
+  _targetIndex = -1;
+  EnvelopeStore.emitChange();
 }
 function _taskCompleted(task) {
   _data[_data.indexOf(task)].completed = !_data[_data.indexOf(task)].completed;
-  TodoStore.emitChange();
+  EnvelopeStore.emitChange();
 }
 function _editTask(task, title) {
   _data[_data.indexOf(task)].title = title;
-  TodoStore.emitChange();
+  EnvelopeStore.emitChange();
 }
 function _toggleTaskState(task) {
   _data[_data.indexOf(task)].editing = !_data[_data.indexOf(task)].editing;
-  TodoStore.emitChange();
+  EnvelopeStore.emitChange();
 }
 function _printTask(task) {
   _targetIndex = _data.indexOf(task);
   _time=new Date();
-  TodoStore.emitChange();
+  EnvelopeStore.emitChange();
   //window.print();
 }
+
 // Facebook style store creation.
-const TodoStore = assign({}, BaseStore, {
+const EnvelopeStore = assign({}, EventEmitter.prototype, {
   // public methods used by Controller-View to operate on data
   getAll() {
     return {
@@ -43,6 +45,19 @@ const TodoStore = assign({}, BaseStore, {
       targetIndex: _targetIndex,
       clickPrintAt:_time
     };
+  },
+  
+  addChangeListener(callback) {
+    this.on(Constants.CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener(callback) {
+    this.removeListener(Constants.CHANGE_EVENT, callback);
+  },
+
+  // triggers change listener above, firing controller-view callback
+  emitChange() {
+    this.emit(Constants.CHANGE_EVENT);
   },
   dispatcherIndex: Dispatcher.register(function handleAction(payload) {
     const action = payload.action;
@@ -55,7 +70,7 @@ const TodoStore = assign({}, BaseStore, {
         // For details, see: http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html#why-we-need-a-dispatcher
         if (text !== '') {
           _addItem(text);
-          TodoStore.emitChange();
+          EnvelopeStore.emitChange();
         }
         break;
       case Constants.ActionTypes.CLEAR_LIST:
@@ -81,4 +96,4 @@ const TodoStore = assign({}, BaseStore, {
   })
 });
 
-export default TodoStore;
+export default EnvelopeStore;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionCreator from '../actions/TodoActionCreators';
+import EnvelopeActions from '../actions/EnvelopeActions';
 
 export default React.createClass({
   //getDefaultProps() {
@@ -13,16 +13,16 @@ export default React.createClass({
   //},
 
   handleToggle(e) {
-    ActionCreator.completeTask(this.props.task);
+    EnvelopeActions.completeTask(this.props.task);
   },
   handleEditTask(e){
-    ActionCreator.editTask(this.props.task, this.refs.input.value)
+    EnvelopeActions.editTask(this.props.task, this.refs.input.value)
   },
   handleEditState(e){
-    ActionCreator.taskState(this.props.task);
+    EnvelopeActions.taskState(this.props.task);
   },
   handlePrintTask(){
-    ActionCreator.printTask(this.props.task);
+    EnvelopeActions.printTask(this.props.task);
   },
 
   render() {

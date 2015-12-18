@@ -1,21 +1,21 @@
 import React from 'react';
-import TodoStore from '../stores/TodoStore';
-import ActionCreator from '../actions/TodoActionCreators';
+import EnvelopeStore from '../stores/EnvelopeStore';
+import EnvelopeActions from '../actions/EnvelopeActions';
 import App from './App.jsx';
 
 let _clickPrint;
 
 export default React.createClass({
   _onChange() {
-    _clickPrint=this.state.clickPrintAt!==TodoStore.getAll().clickPrintAt;
-    this.setState(TodoStore.getAll());
+    _clickPrint=this.state.clickPrintAt!==EnvelopeStore.getAll().clickPrintAt;
+    this.setState(EnvelopeStore.getAll());
   },
   getInitialState() {
-    return TodoStore.getAll();
+    return EnvelopeStore.getAll();
   },
 
   componentDidMount() {
-    TodoStore.addChangeListener(this._onChange);
+    EnvelopeStore.addChangeListener(this._onChange);
   },
   componentDidUpdate(){
     if (_clickPrint) {
@@ -23,18 +23,18 @@ export default React.createClass({
     }
   },
   componentWillUnmount() {
-    TodoStore.removeChangeListener(this._onChange);
+    EnvelopeStore.removeChangeListener(this._onChange);
   },
 
   handleAddTask(e) {
     let title = prompt('Enter task title:');
     if (title) {
-      ActionCreator.addItem(title);
+      EnvelopeActions.addItem(title);
     }
   },
 
   handleClear(e) {
-    ActionCreator.clearList();
+    EnvelopeActions.clearList();
   },
   render() {
     let {tasks,targetIndex} = this.state;
