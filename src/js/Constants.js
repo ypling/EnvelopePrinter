@@ -1,7 +1,7 @@
 export default {
   // event name triggered from store, listened to by views
   CHANGE_EVENTS: {
-    ENVELOPESTORE:"ENVELOPESTORE"
+    ENVELOPE_STORE:"ENVELOPE_STORE"
   },
   PRINT_EVENT:'print',
 

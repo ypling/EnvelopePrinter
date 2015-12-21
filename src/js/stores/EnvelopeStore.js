@@ -4,33 +4,33 @@ import Dispatcher from '../Dispatcher';
 import Constants from '../Constants';
 
 // data storage
-let _data = [];
+let _tasks = [];
 let _targetIndex = -1;
 let _time=new Date();
 
 // add private functions to modify data
 function _addItem(title, completed = false, createTime = (new Date()).toString(), editing = false) {
-  _data = _data.concat({title, completed, createTime, editing});
+  _tasks = _tasks.concat({title, completed, createTime, editing});
 }
 function _clearList() {
-  _data = [];
+  _tasks = [];
   _targetIndex = -1;
   EnvelopeStore.emitChange();
 }
 function _taskCompleted(task) {
-  _data[_data.indexOf(task)].completed = !_data[_data.indexOf(task)].completed;
+  _tasks[_tasks.indexOf(task)].completed = !_tasks[_tasks.indexOf(task)].completed;
   EnvelopeStore.emitChange();
 }
 function _editTask(task, title) {
-  _data[_data.indexOf(task)].title = title;
+  _tasks[_tasks.indexOf(task)].title = title;
   EnvelopeStore.emitChange();
 }
 function _toggleTaskState(task) {
-  _data[_data.indexOf(task)].editing = !_data[_data.indexOf(task)].editing;
+  _tasks[_tasks.indexOf(task)].editing = !_tasks[_tasks.indexOf(task)].editing;
   EnvelopeStore.emitChange();
 }
 function _printTask(task) {
-  _targetIndex = _data.indexOf(task);
+  _targetIndex = _tasks.indexOf(task);
   _time=new Date();
   EnvelopeStore.emitChange();
   //window.print();
@@ -39,25 +39,35 @@ function _printTask(task) {
 // Facebook style store creation.
 const EnvelopeStore = assign({}, EventEmitter.prototype, {
   // public methods used by Controller-View to operate on data
+  getTasks() {
+    return _tasks;
+  },
+
+  getTargetIndex() {
+    return _targetIndex;
+  },
+
+  getTime(){
+    return _time;
+  },
+
   getAll() {
     return {
-      tasks: _data,
+      tasks: _tasks,
       targetIndex: _targetIndex,
       clickPrintAt:_time
     };
   },
-  
+
   addChangeListener(callback) {
-    this.on(Constants.CHANGE_EVENT, callback);
+    this.on(Constants.CHANGE_EVENT.ENVELOPE_STORE, callback);
   },
-
   removeChangeListener(callback) {
-    this.removeListener(Constants.CHANGE_EVENT, callback);
+    this.removeListener(Constants.CHANGE_EVENT.ENVELOPE_STORE, callback);
   },
-
   // triggers change listener above, firing controller-view callback
   emitChange() {
-    this.emit(Constants.CHANGE_EVENT);
+    this.emit(Constants.CHANGE_EVENT.ENVELOPE_STORE);
   },
   dispatcherIndex: Dispatcher.register(function handleAction(payload) {
     const action = payload.action;

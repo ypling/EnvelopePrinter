@@ -31,10 +31,11 @@ module.exports = {
     outputName: 'main.js',
     debug: gutil.env.type === 'dev'
   },
-  html: {
-    src: 'src/index.html',
-    dest: dest
-  },
+  copy: [
+    {src: 'src/index.html',dest: dest},
+    {src: 'bower_components/jQuery/dist/jquery.min.js',dest:dest+'/js'},
+    {src: 'bower_components/bootstrap/dist/css/bootstrap.min.css', dest:dest+'/styles'}
+  ],
   watch: {
     src: 'src/**/*.*',
     tasks: ['build']
