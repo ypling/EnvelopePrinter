@@ -10,20 +10,39 @@ export default React.createClass({
   _printClickHandler(e){
     EnvelopeActions.print(this.props.receiverAdd);
   },
+  _deleteClickHandler(e){
+    EnvelopeActions.remove(this.props.receiverAdd);
+  },
 
   render() {
+    let receiverAdd=this.props.receiverAdd.data;
     return (
-      <li className="task">
-        {this.props.receiverAdd.data}
-        <button className="btn" onClick={this._editClickHandler}>
-          <span className="glyphicon glyphicon-pencil"></span>
-          Edit
-        </button>
-        <button className="btn" onClick={this._printClickHandler}>
-          <span className="glyphicon glyphicon-print"></span>
-          Print
-        </button>
-      </li>
+      <tr className="task">
+        <td>
+          {receiverAdd.fullName}
+        </td>
+        <td>
+          {receiverAdd.line1+', '+receiverAdd.city+', '+receiverAdd.state}
+        </td>
+        <td>
+          <button className="btn" onClick={this._editClickHandler}>
+            <span className="glyphicon glyphicon-pencil"></span>
+            Edit
+          </button>
+        </td>
+        <td>
+          <button className="btn" onClick={this._printClickHandler}>
+            <span className="glyphicon glyphicon-print"></span>
+            Print
+          </button>
+        </td>
+        <td>
+          <button className="btn" onClick={this._deleteClickHandler}>
+            <span className="glyphicon glyphicon-remove"></span>
+            Delete
+          </button>
+        </td>
+      </tr>
     );
   }
 });

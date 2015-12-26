@@ -11,7 +11,11 @@ export default {
   //    text: text
   //  });
   //}
-
+  list(){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.LIST
+    })
+  },
   edit(receiverAdd){
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.EDIT,
@@ -21,6 +25,12 @@ export default {
   print(receiverAdd){
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.PRINT,
+      receiverAdd:receiverAdd
+    })
+  },
+  remove(receiverAdd){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.DELETE,
       receiverAdd:receiverAdd
     })
   },

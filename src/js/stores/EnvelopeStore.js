@@ -4,15 +4,27 @@ import Dispatcher from '../Dispatcher';
 import Constants from '../Constants';
 
 // data storage
-let _receiverAdds = [];
+let _receiverAdds = [{
+  data:{
+    fullName:"Chenghui Jin",
+    line1:"519 Tumble Grass Ter",
+    line2:"",
+    city:"Fremont",
+    state:"CA",
+    ZIP:"94539"
+  }
+}];
 let _currentView = Constants.EnvelopePrinterAppViews.LIST;
 let _currentReceiverAdd = _receiverAdds[0];
 
 // add private functions to modify data
+function _listView() {
+  _currentView = Constants.EnvelopePrinterAppViews.LIST;
+  EnvelopeStore.emitChange();
+}
 function _editView(receiverAdd) {
-  console.log(receiverAdd);
   _currentView = Constants.EnvelopePrinterAppViews.EDIT;
-  _currentReceiverAdd=receiverAdd;
+  _currentReceiverAdd = receiverAdd;
   EnvelopeStore.emitChange();
 }
 function _addView() {
@@ -21,16 +33,20 @@ function _addView() {
 }
 function _printView(receiverAdd) {
   _currentView = Constants.EnvelopePrinterAppViews.PRINT;
-  _currentReceiverAdd=receiverAdd;
+  _currentReceiverAdd = receiverAdd;
+  EnvelopeStore.emitChange();
+}
+function _remove(receiverAdd) {
+  _receiverAdds.splice(_receiverAdds.indexOf(receiverAdd), 1);
   EnvelopeStore.emitChange();
 }
 function _saveAdd(receiverAdd) {
-  _receiverAdds.push({data:receiverAdd});
+  _receiverAdds.push({data: receiverAdd});
   _currentView = Constants.EnvelopePrinterAppViews.LIST;
   EnvelopeStore.emitChange();
 }
 function _saveEdit(newAdd, oldAdd) {
-  oldAdd.data=newAdd;
+  oldAdd.data = newAdd;
   _currentView = Constants.EnvelopePrinterAppViews.LIST;
   EnvelopeStore.emitChange();
 }
@@ -70,6 +86,12 @@ const EnvelopeStore = assign({}, EventEmitter.prototype, {
       case Constants.ActionTypes.PRINT:
         _printView(action.receiverAdd);
         break;
+      case Constants.ActionTypes.LIST:
+        _listView();
+        break;
+      case Constants.ActionTypes.DELETE:
+        _remove(action.receiverAdd);
+        break;
       case Constants.ActionTypes.SAVE_ADD:
         _saveAdd(action.receiverAdd);
         break;
@@ -77,9 +99,7 @@ const EnvelopeStore = assign({}, EventEmitter.prototype, {
         _saveEdit(action.newAdd, action.oldAdd);
         break;
 
-
       // add more cases for other actionTypes...
-
       // no default
     }
   })

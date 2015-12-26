@@ -9,7 +9,9 @@ export default {
   ActionTypes: {
     EDIT:"EDIT",
     ADD:"ADD",
+    LIST:"LIST",
     PRINT:"PRINT",
+    DELETE:"DELETE",
     SAVE_EDIT:"SAVE_EDIT",
     SAVE_ADD:"SAVE_ADD"
 

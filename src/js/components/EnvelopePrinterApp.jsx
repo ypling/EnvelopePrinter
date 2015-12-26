@@ -7,7 +7,6 @@ import AddView from './AddView.jsx';
 
 export default React.createClass({
   render() {
-    console.log(this.props);
     var view;
     switch (this.props.currentView) {
       case Constants.EnvelopePrinterAppViews.LIST:
@@ -25,7 +24,12 @@ export default React.createClass({
     }
 
     return (
-      <div>
+      <div className="container-fluid">
+        <div className="row title">
+          <div className="col-lg-12">
+            <h1 style={{backgroundColor:'gray',color:'white',textAlign:'center'}}>ReceiverAddress Management</h1>
+          </div>
+        </div>
         {view}
       </div>
     );

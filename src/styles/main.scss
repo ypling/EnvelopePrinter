@@ -5,39 +5,21 @@ $primary-color: green;
 h1 {
   color: $primary-color;
 }
-
-li.task {
-  list-style-type: none;
-
-  label {
-    padding: 0 10px;
-    width: 300px;
-  }
-}
-
-.toAddress {
+.receiverAddress {
   margin-left: 30%;
   margin-top: 30px;
   font-size: 24px;
-  display: none;
+  //display: none;
 }
 
-.fromAddress {
-  margin-top: -15px;
-  display: none;
+.sendAddress {
+  font-size: 24px;
+  margin-top: 5px;
+  //display: none;
 }
 
 @media print {
-  .fromAddress {
-    margin-top: -15px;
-    display: block;
-  }
-
-  .toAddress {
-    display: block;
-  }
-
-  .addressList {
+  .title{
     display: none;
   }
 }
