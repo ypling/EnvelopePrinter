@@ -1,0 +1,13 @@
+/**
+ * Created by chenghui on 12/24/2015.
+ */
+import React from 'react';
+
+export default React.createClass({
+
+  render() {
+    return (
+      <a href="/#/envelopePrinter">EnvelopePrinter</a>
+    );
+  }
+});

@@ -4,47 +4,44 @@ import Constants from '../Constants';
 /* eslint-disable no-console */
 
 export default {
-  addItem(text) {
+  //addItem(text) {
+  //
+  //  Dispatcher.handleViewAction({
+  //    type: Constants.ActionTypes.TASK_ADDED,
+  //    text: text
+  //  });
+  //}
 
+  edit(receiverAdd){
     Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.TASK_ADDED,
-      text: text
-    });
-  },
-
-  clearList() {
-
-    Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.CLEAR_LIST
-    });
-  },
-
-  completeTask(task) {
-    Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.TASK_COMPLETED,
-      task: task
-    });
-  },
-
-  editTask(task, text){
-    Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.TASK_EDITED,
-      task: task,
-      newTitle: text
-    });
-  },
-
-  taskState(task){
-    Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.TASK_STATE,
-      task:task
+      type: Constants.ActionTypes.EDIT,
+      receiverAdd:receiverAdd
     })
   },
-  printTask(task){
+  print(receiverAdd){
     Dispatcher.handleViewAction({
-      type:Constants.ActionTypes.TASK_PRINT,
-      task:task
-    });
+      type: Constants.ActionTypes.PRINT,
+      receiverAdd:receiverAdd
+    })
+  },
+  add(){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.ADD
+    })
+  },
+  saveAdd(receiverAdd){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.SAVE_ADD,
+      receiverAdd:receiverAdd
+    })
+  },
+  saveEdit(newAdd,oldAdd){
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.SAVE_EDIT,
+      newAdd:newAdd,
+      oldAdd:oldAdd
+    })
   }
+
 
 };
