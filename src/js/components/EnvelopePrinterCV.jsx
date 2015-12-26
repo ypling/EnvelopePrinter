@@ -37,7 +37,6 @@ export default React.createClass({
   },
 
   render() {
-
     return (
       <EnvelopePrinterApp
         receiverAdds={this.state.receiverAdds}

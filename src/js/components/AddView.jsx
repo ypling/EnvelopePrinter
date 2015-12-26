@@ -67,10 +67,15 @@ export default React.createClass({
             </div>
           </div>
         </form>
-        <button className="btn btn-success" onClick={this._saveAddClickHandler}>
-          <span className="glyphicon glyphicon-save"></span>
-          Add
-        </button>
+        <div className="row">
+          <div className="col-sm-offset-2 col-sm-10">
+            <button className="btn btn-success" onClick={this._saveAddClickHandler}>
+              <span className="glyphicon glyphicon-save"></span>
+              Add
+            </button>
+          </div>
+        </div>
+
       </div>
     );
   }
