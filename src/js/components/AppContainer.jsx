@@ -1,5 +1,5 @@
 import React from 'react';
-import EnvelopePrinterCV from './EnvelopePrinterCV.jsx';
+import EnvelopePrinterCV from './EnvelopPrinter/EnvelopePrinterCV.jsx';
 import Apps from './Apps.jsx';
 import { Router, Route } from 'react-router'
 

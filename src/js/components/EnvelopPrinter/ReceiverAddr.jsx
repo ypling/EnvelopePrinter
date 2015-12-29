@@ -1,28 +1,28 @@
 import React from 'react';
-import EnvelopeActions from '../actions/EnvelopeActions';
+import EnvelopeActions from '../../actions/EnvelopeActions';
 
 export default React.createClass({
 
   _editClickHandler(e){
-    EnvelopeActions.edit(this.props.receiverAdd)
+    EnvelopeActions.edit(this.props.receiverAddr)
   },
 
   _printClickHandler(e){
-    EnvelopeActions.print(this.props.receiverAdd);
+    EnvelopeActions.print(this.props.receiverAddr);
   },
   _deleteClickHandler(e){
-    EnvelopeActions.remove(this.props.receiverAdd);
+    EnvelopeActions.remove(this.props.receiverAddr);
   },
 
   render() {
-    let receiverAdd=this.props.receiverAdd.data;
+    let receiverAddr=this.props.receiverAddr.data;
     return (
       <tr className="task">
         <td>
-          {receiverAdd.fullName}
+          {receiverAddr.fullName}
         </td>
         <td>
-          {receiverAdd.line1+', '+receiverAdd.city+', '+receiverAdd.state}
+          {receiverAddr.line1+', '+receiverAddr.city+', '+receiverAddr.state}
         </td>
         <td>
           <button className="btn" onClick={this._editClickHandler}>

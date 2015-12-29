@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-import Constants from '../Constants';
+import Constants from '../../Constants';
+import NavBar from '../Common/NavBar.jsx';
 import ListView from './ListView.jsx';
 import EditView from './EditView.jsx';
 import PrintView from './PrintView.jsx';
@@ -10,13 +11,13 @@ export default React.createClass({
     var view;
     switch (this.props.currentView) {
       case Constants.EnvelopePrinterAppViews.LIST:
-        view = <ListView receiverAdds={this.props.receiverAdds}/>;
+        view = <ListView receiverAddrs={this.props.receiverAddrs} senderAddr={this.props.senderAddr}/>;
         break;
       case Constants.EnvelopePrinterAppViews.EDIT:
-        view = <EditView receiverAdd={this.props.currentReceiverAdd}/>;
+        view = <EditView selectedAddr={this.props.selectedAddr}/>;
         break;
       case Constants.EnvelopePrinterAppViews.PRINT:
-        view = <PrintView receiverAdd={this.props.currentReceiverAdd}/>;
+        view = <PrintView receiverAddr={this.props.selectedAddr} senderAddr={this.props.senderAddr}/>;
         break;
       case Constants.EnvelopePrinterAppViews.ADD:
         view = <AddView />;
@@ -25,11 +26,7 @@ export default React.createClass({
 
     return (
       <div className="container-fluid">
-        <div className="row title">
-          <div className="col-lg-12">
-            <h1 style={{backgroundColor:'gray',color:'white',textAlign:'center'}}>ReceiverAddress Management</h1>
-          </div>
-        </div>
+        <NavBar title="EnvelopePrinter" titleHref="/envelopePrinter"/>
         {view}
       </div>
     );

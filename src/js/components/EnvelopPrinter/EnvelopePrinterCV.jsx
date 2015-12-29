@@ -1,17 +1,19 @@
 import React, {PropTypes} from 'react';
-import EnvelopeStore from '../stores/EnvelopeStore';
+import EnvelopeStore from '../../stores/EnvelopeStore';
 import EnvelopePrinterApp from './EnvelopePrinterApp.jsx';
-import EnvelopeActions from '../actions/EnvelopeActions';
-import Constants from '../Constants';
+import EnvelopeActions from '../../actions/EnvelopeActions';
+import Constants from '../../Constants';
 
 function _getStoreState() {
-  var receiverAdds = EnvelopeStore.getReceiverAdds();
+  var receiverAddrs = EnvelopeStore.getReceiverAddrs();
+  var senderAddr = EnvelopeStore.getSenderAddr();
   var currentView = EnvelopeStore.getCurrentView();
-  var currentReceiverAdd = EnvelopeStore.getCurrentReceiverAdd();
+  var selectedAddr = EnvelopeStore.getSelectedAddr();
   return {
-    receiverAdds: receiverAdds,
+    receiverAddrs: receiverAddrs,
+    senderAddr:senderAddr,
     currentView: currentView,
-    currentReceiverAdd: currentReceiverAdd
+    selectedAddr: selectedAddr
   };
 }
 
@@ -30,7 +32,7 @@ export default React.createClass({
     EnvelopeStore.removeChangeListener(this._onChange);
   },
   componentDidUpdate(){
-    if (this.state.currentView === Constants.EnvelopePrinterAppViews.PRINT) {
+    if (this.state.currentView  === Constants.EnvelopePrinterAppViews.PRINT) {
       window.print();
       EnvelopeActions.list();
     }
@@ -39,9 +41,10 @@ export default React.createClass({
   render() {
     return (
       <EnvelopePrinterApp
-        receiverAdds={this.state.receiverAdds}
+        receiverAddrs={this.state.receiverAddrs}
+        senderAddr={this.state.senderAddr}
         currentView={this.state.currentView}
-        currentReceiverAdd={this.state.currentReceiverAdd}
+        selectedAddr={this.state.selectedAddr}
         />
     );
   }

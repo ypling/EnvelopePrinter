@@ -7,7 +7,10 @@ export default React.createClass({
 
   render() {
     return (
-      <a href="/#/envelopePrinter">EnvelopePrinter</a>
+      <a href="/#/envelopePrinter" className="btn btn-info">
+        <span className="glyphicon glyphicon-envelope"></span> <span className="glyphicon glyphicon-print"></span><br/>
+        EnvelopePrinter
+      </a>
     );
   }
 });

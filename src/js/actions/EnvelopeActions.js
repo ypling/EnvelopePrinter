@@ -16,22 +16,22 @@ export default {
       type: Constants.ActionTypes.LIST
     })
   },
-  edit(receiverAdd){
+  edit(receiverAddr){
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.EDIT,
-      receiverAdd:receiverAdd
+      receiverAddr:receiverAddr
     })
   },
-  print(receiverAdd){
+  print(receiverAddr){
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.PRINT,
-      receiverAdd:receiverAdd
+      receiverAddr:receiverAddr
     })
   },
-  remove(receiverAdd){
+  remove(receiverAddr){
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.DELETE,
-      receiverAdd:receiverAdd
+      receiverAddr:receiverAddr
     })
   },
   add(){
@@ -39,10 +39,10 @@ export default {
       type: Constants.ActionTypes.ADD
     })
   },
-  saveAdd(receiverAdd){
+  saveAdd(receiverAddr){
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.SAVE_ADD,
-      receiverAdd:receiverAdd
+      receiverAddr:receiverAddr
     })
   },
   saveEdit(newAdd,oldAdd){
