@@ -27,6 +27,7 @@ export default React.createClass({
 
   componentDidMount() {
     EnvelopeStore.addChangeListener(this._onChange);
+    EnvelopeActions.list();
   },
   componentWillUnmount() {
     EnvelopeStore.removeChangeListener(this._onChange);
@@ -37,7 +38,6 @@ export default React.createClass({
       EnvelopeActions.list();
     }
   },
-
   render() {
     return (
       <EnvelopePrinterApp

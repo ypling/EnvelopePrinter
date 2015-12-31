@@ -45,6 +45,8 @@
     ]
   },
   "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
     "mongojs": "^2.2.2"
   }
 }

@@ -4,13 +4,13 @@ import Actions from '../../actions/EnvelopeActions';
 export default React.createClass({
   _saveClickHandler(){
     Actions.save({
-      fullName: this.refs.fullName.value,
-      line1: this.refs.line1.value,
-      line2: this.refs.line2.value,
-      city: this.refs.city.value,
-      state: this.refs.state.value,
-      ZIP: this.refs.ZIP.value,
-      country: this.refs.country.value
+      "fullName": this.refs.fullName.value,
+      "line1": this.refs.line1.value,
+      "line2": this.refs.line2.value,
+      "city": this.refs.city.value,
+      "state": this.refs.state.value,
+      "ZIP": this.refs.ZIP.value,
+      "country": this.refs.country.value
     }, this.props.selectedAddr);
   },
   _cancelClickHandler(){

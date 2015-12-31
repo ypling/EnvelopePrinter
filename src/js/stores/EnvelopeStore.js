@@ -4,16 +4,7 @@ import Dispatcher from '../Dispatcher';
 import Constants from '../Constants';
 
 // data storage
-let _receiverAddrs = [{
-  data:{
-    fullName:"Chenghui Jin",
-    line1:"519 Tumble Grass Ter",
-    line2:"",
-    city:"Fremont",
-    state:"CA",
-    ZIP:"94539"
-  }
-}];
+let _receiverAddrs;
 let _senderAddr={data:{
   fullName:"Chenghui Jin",
   line1:"519 Tumble Grass Ter",
@@ -23,11 +14,12 @@ let _senderAddr={data:{
   ZIP:"94539"
 }};
 let _currentView = Constants.EnvelopePrinterAppViews.LIST;
-let _selectedAddr = _receiverAddrs[0];
+let _selectedAddr;
 
 // add private functions to modify data
-function _listView() {
+function _listView(addrs) {
   _currentView = Constants.EnvelopePrinterAppViews.LIST;
+  _receiverAddrs=addrs;
   EnvelopeStore.emitChange();
 }
 function _editView(addr) {
@@ -91,7 +83,7 @@ const EnvelopeStore = assign({}, EventEmitter.prototype, {
         _printView(action.receiverAddr);
         break;
       case Constants.ActionTypes.LIST:
-        _listView();
+        _listView(action.receiverAddrs);
         break;
       case Constants.ActionTypes.DELETE:
         _remove(action.receiverAddr);
