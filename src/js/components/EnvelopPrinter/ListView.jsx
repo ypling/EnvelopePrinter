@@ -4,7 +4,7 @@ import ReceiverAdd from './ReceiverAddr.jsx'
 
 export default React.createClass({
   _addClickHandler(){
-    Actions.add();
+    Actions.edit();
   },
   _editClickHandler(){
     Actions.edit(this.props.senderAddr)

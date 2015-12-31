@@ -12,9 +12,7 @@ export default {
     LIST:"LIST",
     PRINT:"PRINT",
     DELETE:"DELETE",
-    SAVE_EDIT:"SAVE_EDIT",
-    SAVE_ADD:"SAVE_ADD"
-
+    SAVE:"SAVE"
   },
 
   ActionSources: {

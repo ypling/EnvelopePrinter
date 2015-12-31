@@ -1,5 +1,6 @@
 import Dispatcher from '../Dispatcher';
 import Constants from '../Constants';
+import API from '../APIs/mock/envelopePrinterAPI'
 
 /* eslint-disable no-console */
 
@@ -12,6 +13,7 @@ export default {
   //  });
   //}
   list(){
+    //var addrs=API.getAddrs();
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.LIST
     })
@@ -34,22 +36,11 @@ export default {
       receiverAddr:receiverAddr
     })
   },
-  add(){
+  save(newAddr,oldAddr){
     Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.ADD
-    })
-  },
-  saveAdd(receiverAddr){
-    Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.SAVE_ADD,
-      receiverAddr:receiverAddr
-    })
-  },
-  saveEdit(newAdd,oldAdd){
-    Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.SAVE_EDIT,
-      newAdd:newAdd,
-      oldAdd:oldAdd
+      type: Constants.ActionTypes.SAVE,
+      newAddr:newAddr,
+      oldAddr:oldAddr
     })
   }
 

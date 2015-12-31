@@ -3,44 +3,36 @@ import EnvelopeActions from '../../actions/EnvelopeActions';
 
 export default React.createClass({
 
-  _editClickHandler(e){
+  _editClickHandler(){
     EnvelopeActions.edit(this.props.receiverAddr)
   },
-
-  _printClickHandler(e){
+  _printClickHandler(){
     EnvelopeActions.print(this.props.receiverAddr);
   },
-  _deleteClickHandler(e){
+  _deleteClickHandler(){
     EnvelopeActions.remove(this.props.receiverAddr);
   },
 
   render() {
-    let receiverAddr=this.props.receiverAddr.data;
+    let receiverAddr = this.props.receiverAddr.data;
     return (
       <tr className="task">
         <td>
           {receiverAddr.fullName}
         </td>
         <td>
-          {receiverAddr.line1+', '+receiverAddr.city+', '+receiverAddr.state}
+          {receiverAddr.line1 + ', ' + receiverAddr.city + ', ' + receiverAddr.state}
         </td>
         <td>
-          <button className="btn" onClick={this._editClickHandler}>
-            <span className="glyphicon glyphicon-pencil"></span>
-            Edit
-          </button>
-        </td>
-        <td>
-          <button className="btn" onClick={this._printClickHandler}>
-            <span className="glyphicon glyphicon-print"></span>
-            Print
-          </button>
-        </td>
-        <td>
-          <button className="btn" onClick={this._deleteClickHandler}>
-            <span className="glyphicon glyphicon-remove"></span>
-            Delete
-          </button>
+          <div>
+            <button className="btn" onClick={this._editClickHandler}>
+              <span className="glyphicon glyphicon-pencil"></span> Edit
+            </button>  <button className="btn" onClick={this._printClickHandler}>
+              <span className="glyphicon glyphicon-print"></span> Print
+            </button>  <button className="btn" onClick={this._deleteClickHandler}>
+              <span className="glyphicon glyphicon-remove"></span> Delete
+            </button>
+          </div>
         </td>
       </tr>
     );

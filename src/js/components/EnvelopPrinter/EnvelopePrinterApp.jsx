@@ -4,7 +4,6 @@ import NavBar from '../Common/NavBar.jsx';
 import ListView from './ListView.jsx';
 import EditView from './EditView.jsx';
 import PrintView from './PrintView.jsx';
-import AddView from './AddView.jsx';
 
 export default React.createClass({
   render() {
@@ -14,13 +13,10 @@ export default React.createClass({
         view = <ListView receiverAddrs={this.props.receiverAddrs} senderAddr={this.props.senderAddr}/>;
         break;
       case Constants.EnvelopePrinterAppViews.EDIT:
-        view = <EditView selectedAddr={this.props.selectedAddr}/>;
+        view = <EditView selectedAddr={this.props.selectedAddr} />;
         break;
       case Constants.EnvelopePrinterAppViews.PRINT:
         view = <PrintView receiverAddr={this.props.selectedAddr} senderAddr={this.props.senderAddr}/>;
-        break;
-      case Constants.EnvelopePrinterAppViews.ADD:
-        view = <AddView />;
         break;
     }
 

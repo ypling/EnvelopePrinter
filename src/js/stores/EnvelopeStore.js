@@ -35,10 +35,6 @@ function _editView(addr) {
   _selectedAddr = addr;
   EnvelopeStore.emitChange();
 }
-function _addView() {
-  _currentView = Constants.EnvelopePrinterAppViews.ADD;
-  EnvelopeStore.emitChange();
-}
 function _printView(receiverAddr) {
   _currentView = Constants.EnvelopePrinterAppViews.PRINT;
   _selectedAddr = receiverAddr;
@@ -48,13 +44,13 @@ function _remove(receiverAddr) {
   _receiverAddrs.splice(_receiverAddrs.indexOf(receiverAddr), 1);
   EnvelopeStore.emitChange();
 }
-function _saveAdd(receiverAddr) {
-  _receiverAddrs.push({data: receiverAddr});
-  _currentView = Constants.EnvelopePrinterAppViews.LIST;
-  EnvelopeStore.emitChange();
-}
-function _saveEdit(newAdd, oldAdd) {
-  oldAdd.data = newAdd;
+
+function _save(newAddr, oldAddr) {
+  if(oldAddr){
+    oldAddr.data = newAddr;
+  }else{
+    _receiverAddrs.push({data: newAddr});
+  }
   _currentView = Constants.EnvelopePrinterAppViews.LIST;
   EnvelopeStore.emitChange();
 }
@@ -91,9 +87,6 @@ const EnvelopeStore = assign({}, EventEmitter.prototype, {
       case Constants.ActionTypes.EDIT:
         _editView(action.receiverAddr);
         break;
-      case Constants.ActionTypes.ADD:
-        _addView();
-        break;
       case Constants.ActionTypes.PRINT:
         _printView(action.receiverAddr);
         break;
@@ -103,11 +96,8 @@ const EnvelopeStore = assign({}, EventEmitter.prototype, {
       case Constants.ActionTypes.DELETE:
         _remove(action.receiverAddr);
         break;
-      case Constants.ActionTypes.SAVE_ADD:
-        _saveAdd(action.receiverAddr);
-        break;
-      case Constants.ActionTypes.SAVE_EDIT:
-        _saveEdit(action.newAdd, action.oldAdd);
+      case Constants.ActionTypes.SAVE:
+        _save(action.newAddr, action.oldAddr);
         break;
 
       // add more cases for other actionTypes...

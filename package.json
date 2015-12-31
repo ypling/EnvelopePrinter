@@ -43,5 +43,8 @@
       "json",
       "es6"
     ]
+  },
+  "dependencies": {
+    "mongojs": "^2.2.2"
   }
 }
